@@ -34,7 +34,7 @@ while True:
     if results.multi_hand_landmarks:
         # Preparing data before sending it to Unity
         for landmark in results.multi_hand_landmarks[0].landmark:
-            data.extend([landmark.x * height, height * (1 - landmark.y), landmark.z * height])
+            data.extend([landmark.x, 1 - landmark.y, landmark.z])
 
         # Sending data
         socket_u.sendto(str.encode(str(data)), server_address_and_port)
