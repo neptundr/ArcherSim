@@ -15,7 +15,8 @@ public class UDPReceive : MonoBehaviour
     public bool startRecieving = true;
     public bool printToConsole = false;
     public string data;
-    
+
+    private bool dataReceived = false;
     private string previousData;
 
     public void Start()
@@ -29,18 +30,19 @@ public class UDPReceive : MonoBehaviour
 
     private void Update()
     {
-        if (data != null && previousData != data)
+        if (dataReceived && data != null && previousData != data)
         {
             // sending data to hand manager
             handManager.UpdateHands(data);
             previousData = data;
         }
     }
-
-
+    
     // receiving thread
     private void ReceiveData()
     {
+        Debug.Log("A");
+        dataReceived = true;
         client = new UdpClient(port);
         while (startRecieving)
         {

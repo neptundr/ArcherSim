@@ -7,12 +7,12 @@ public class Hand : MonoBehaviour
 {
     [SerializeField] private GameObject handPoint;
     
-    private Transform[] handPoints;
+    public Transform[] handPoints;
     
     private void Start()
     {
         // hand points creation
-        handPoints = new Transform[HandManager.HandPointsNumber];
+        handPoints = new Transform[Convert.ToInt32(HandManager.HandPointsNumber)];
         for (int i = 0; i < handPoints.Length; i++)
         {
             handPoints[i] = Instantiate(handPoint, transform).transform;

@@ -3,7 +3,6 @@ import socket
 import mediapipe as mp
 import numpy as np
 
-
 # Camera
 width, height = 1280, 720
 
@@ -32,12 +31,22 @@ while True:
 
     data = []
     if results.multi_hand_landmarks:
-        # Preparing data before sending it to Unity
-        for landmark in results.multi_hand_landmarks[0].landmark:
-            data.extend([landmark.x, 1 - landmark.y, landmark.z])
+        if (len(results.multi_hand_landmarks) == 2):
+            # Preparing data before sending it to Unity
 
-        # Sending data
-        socket_u.sendto(str.encode(str(data)), server_address_and_port)
+            # Left hand goes first
+            if (results.multi_handedness[0].classification[0].label == "Right"):
+                ordered_hands = [results.multi_hand_landmarks[1], results.multi_hand_landmarks[0]]
+            else:
+                ordered_hands = results.multi_hand_landmarks
+
+            # Converting to string of coordinates
+            for multi_hand_landmark in ordered_hands:
+                for landmark in multi_hand_landmark.landmark:
+                    data.extend([landmark.x, 1 - landmark.y, landmark.z])
+
+            # Sending data
+            socket_u.sendto(str.encode(str(data)), server_address_and_port)
     else:
         pass
     cv2.imshow("Image", img)
