@@ -1,4 +1,3 @@
 # ArcherSim
 
-Это симулятор лучника, использующий технологии компьютерного зрения. Скачайте всю папку Build (https://drive.google.com/drive/folders/1XNLES6nMeHdwpund3cFK_J_aawpmgtIg?usp=sharing), и запустите ArcherSim. Пришлось загрузить на google диск, потому база данных OpenCV весит слишком много, а мне хотелось, чтобы все приложение было в одном месте. Вам будут показаны более подробные инструкции при запуске.
-Можете ознакомиться с дневником разработки (Journal.md), а также скриншотами, сделанными во время разработки (Screenshots/).
+Download the Build folder (https://drive.google.com/drive/folders/1XNLES6nMeHdwpund3cFK_J_aawpmgtIg?usp=sharing), launch ArcherSim and enjoy!
